@@ -1,5 +1,5 @@
 import express from 'express';
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 
 import { makeExecutableSchema } from 'graphql-tools';
 
@@ -20,6 +20,6 @@ export const schema = makeExecutableSchema({
 const server = new ApolloServer({ schema });
 server.applyMiddleware({ app });
 
-models.sequelize.sync({}).then(() => {
+models.sequelize.sync({ force: true }).then(() => {
   app.listen({ port: PORT }, () => console.log(`🚀  Server ready at http://localhost:4000${server.graphqlPath} 🚀 `));
 });
