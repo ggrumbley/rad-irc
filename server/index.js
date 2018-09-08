@@ -24,9 +24,7 @@ const app = express();
 server.applyMiddleware({ app });
 
 models.sequelize.sync({ }).then(() => {
-  console.log('BOOP!');
-});
-
-app.listen({ port: PORT }, () => {
-  console.log(`🚀  Server ready at http://localhost:4000${server.graphqlPath} 🚀 `)
+  app.listen({ port: PORT }, () => {
+    console.log(`🚀  Server ready at http://localhost:4000${server.graphqlPath} 🚀 `)
+  });
 });
