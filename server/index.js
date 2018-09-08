@@ -3,8 +3,8 @@ import { ApolloServer } from 'apollo-server-express';
 
 import { makeExecutableSchema } from 'graphql-tools';
 
-import typeDefs from './schema';
-import resolvers from './resolvers';
+import typeDefs from './schema/schema';
+import resolvers from './resolvers/resolvers';
 import models from './models';
 
 const PORT = 4000;

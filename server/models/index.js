@@ -13,6 +13,9 @@ const sequelize = new Sequelize('slack', config.development.username, config.dev
   },
   pool: { maxConnections: 5, maxIdleTime: 30},
   language: 'en',
+  define: {
+    underscored: true,
+  },
 });
 
 const models = {
