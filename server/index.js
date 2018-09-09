@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import { ApolloServer } from 'apollo-server-express';
 
 import { makeExecutableSchema } from 'graphql-tools';
@@ -17,7 +18,7 @@ export const schema = makeExecutableSchema({
   resolvers,
 });
 
-const server = new ApolloServer({ schema });
+const server = new ApolloServer({ schema, context: { models } });
 
 const app = express();
 
