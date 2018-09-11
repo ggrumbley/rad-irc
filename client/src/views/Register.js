@@ -1,12 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import {
-  Input,
-  Container,
-  Header,
-  Button
-} from 'semantic-ui-react'
+import { Input, Container, Header, Button } from 'semantic-ui-react';
 
 class Register extends React.Component {
   state = {
@@ -15,7 +10,7 @@ class Register extends React.Component {
     password: '',
   };
 
-  onChange = (e) => {
+  onChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -25,14 +20,13 @@ class Register extends React.Component {
       variables: this.state,
     });
     console.log(res);
-  }
+  };
 
   render() {
-
     const { username, email, password } = this.state;
     return (
       <Container text>
-        <Header as='h2'>Register</Header>
+        <Header as="h2">Register</Header>
         <Input
           name="username"
           onChange={this.onChange}
@@ -59,11 +53,17 @@ class Register extends React.Component {
       </Container>
     );
   }
-};
+}
 
 const registerMutation = gql`
   mutation($username: String!, $email: String!, $password: String!) {
-    register(username: $username, email: $email, password: $password)
+    register(username: $username, email: $email, password: $password) {
+      ok
+      errors {
+        path
+        message
+      }
+    }
   }
 `;
 
