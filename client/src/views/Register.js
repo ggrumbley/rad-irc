@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import { Input, Container, Header, Button, Message } from 'semantic-ui-react';
+import { Input, Container, Header, Button, Message, Form } from 'semantic-ui-react';
 
 class Register extends React.Component {
   state = {
@@ -63,34 +63,33 @@ class Register extends React.Component {
 
     return (
       <Container text>
-        <Header as="h2">Register</Header>{' '}
-        <Input
-          name="username"
-          onChange={this.onChange}
-          value={username}
-          placeholder="Username"
-          error={!!usernameError}
-          fluid
-        />
-        <Input
-          name="email"
-          onChange={this.onChange}
-          value={email}
-          placeholder="Email"
-          error={!!emailError}
-          fluid
-        />
-        <Input
-          name="password"
-          onChange={this.onChange}
-          type="password"
-          value={password}
-          placeholder="Password"
-          error={!!passwordError}
-          fluid
-        />
-        <Button onClick={this.onSubmit}> Submit </Button>
-        {usernameError || emailError || passwordError ? (
+        <Header as="h2">Register</Header>
+        <Form>
+          <Form.Field error={!!usernameError}>
+            <Input
+              name="username"
+              onChange={this.onChange}
+              value={username}
+              placeholder="Username"
+              fluid
+            />
+          </Form.Field>
+          <Form.Field error={!!emailError}>
+            <Input name="email" onChange={this.onChange} value={email} placeholder="Email" fluid />
+          </Form.Field>
+          <Form.Field error={!!passwordError}>
+            <Input
+              name="password"
+              onChange={this.onChange}
+              type="password"
+              value={password}
+              placeholder="Password"
+              fluid
+            />
+          </Form.Field>
+          <Button onClick={this.onSubmit}> Submit </Button>
+        </Form>
+        {errorList.length ? (
           <Message error header="There was some errors with your submission" list={errorList} />
         ) : null}
       </Container>
