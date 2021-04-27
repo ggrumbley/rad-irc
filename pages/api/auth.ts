@@ -1,8 +1,10 @@
 /**
  * NOTE: this file is only needed if you're doing SSR (getServerSideProps)!
  */
+import { NextApiRequest, NextApiResponse } from 'next';
+
 import { supabase } from '../../utils/initSupabase';
 
-export default (req, res) => {
+export default (req: NextApiRequest, res: NextApiResponse): void => {
   supabase.auth.api.setAuthCookie(req, res);
 };
