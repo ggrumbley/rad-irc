@@ -4,7 +4,7 @@ import { supabase } from '../utils/initSupabase';
 import '../styles/globals.css';
 
 const App = ({ Component, pageProps }) => (
-  <main className={'dark'}>
+  <main className="dark">
     <Auth.UserContextProvider supabaseClient={supabase}>
       <Component {...pageProps} />
     </Auth.UserContextProvider>
